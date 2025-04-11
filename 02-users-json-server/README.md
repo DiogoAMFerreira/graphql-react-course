@@ -12,6 +12,20 @@ This will start the application on the configured port (Set to 4000 on the examp
 
 Open the application in the browser at http://localhost:4000/graphql
 
+## Nodemon for development mode
+
+Installed nodemon and created a command to help development
+
+```sh
+npm install --save nodemon
+```
+
+Run the code with the dev command
+
+```sh
+npm run dev
+```
+
 ## Step 1 - Setup a Demo API with JSON Server
 
 This is a really small fake API to serve some data
