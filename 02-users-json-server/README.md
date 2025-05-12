@@ -54,3 +54,54 @@ Run it paralel with the application
 ```sh
 npm install --save axios
 ```
+
+# Query examples
+
+Example of complex query using fragments so it's not necessary to rewrite the wanted properties:
+
+```graphql
+query {
+  google: company(id: "1") {
+    ...companyDetails
+  }
+  microsoft: company(id: "3") {
+    ...companyDetails
+  }
+}
+
+fragment companyDetails on Company {
+  name
+  description
+  users {
+    firstName
+    company {
+      id
+      name
+      users {
+        id
+      }
+    }
+  }
+}
+```
+
+## Mutations
+
+A Mutation query is split in 2 parts:
+
+- The first part refers to the change and the fields
+- The second part refers to the returning fields
+
+Example:
+
+```graphql
+{
+  "data": {
+    "addUser": {
+      "id": "a6cc",
+      "firstName": "Steven",
+      "age": 23
+    }
+  }
+}
+```

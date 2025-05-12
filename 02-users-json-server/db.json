@@ -1,12 +1,39 @@
 {
   "users": [
-    { "id": "22", "firstName": "John", "age": 21, "companyId": "1" },
-    { "id": "30", "firstName": "Mary", "age": 24, "companyId": "3" },
-    { "id": "31", "firstName": "Seth", "age": 30, "companyId": "3" },
-    { "id": "34", "firstName": "Jenny", "age": 25, "companyId": "1" }
+    {
+      "id": "30",
+      "firstName": "Mary",
+      "age": 24,
+      "companyId": "3"
+    },
+    {
+      "id": "31",
+      "firstName": "Seth",
+      "age": 30,
+      "companyId": "3"
+    },
+    {
+      "id": "34",
+      "firstName": "Jenny",
+      "age": 25,
+      "companyId": "1"
+    },
+    {
+      "id": "a6cc",
+      "firstName": "Steven",
+      "age": 23
+    }
   ],
   "companies": [
-    { "id": "1", "name": "GGL", "description": "Google" },
-    { "id": "3", "name": "MCS", "description": "Microsoft" }
+    {
+      "id": "1",
+      "name": "GGL",
+      "description": "Google"
+    },
+    {
+      "id": "3",
+      "name": "MCS",
+      "description": "Microsoft"
+    }
   ]
 }

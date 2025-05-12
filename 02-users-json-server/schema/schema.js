@@ -1,5 +1,6 @@
 const { default: axios } = require("axios");
 const graphql = require("graphql");
+const { first } = require("lodash");
 
 const {
   GraphQLObjectType,
@@ -7,6 +8,7 @@ const {
   GraphQLInt,
   GraphQLList,
   GraphQLSchema,
+  GraphQLNonNull,
 } = graphql;
 
 //Order of definition is very important so relations are linked through the types
@@ -79,6 +81,40 @@ const RootQuery = new GraphQLObjectType({
   },
 });
 
+const mutation = new GraphQLObjectType({
+  name: "Mutation",
+  fields: {
+    //User mutation to add a new user
+    addUser: {
+      type: UserType,
+      args: {
+        //The new GraphQLNonNull forces that when someone calls this mutation to add a User this field can't be null
+        firstName: { type: new GraphQLNonNull(GraphQLString) },
+        age: { type: new GraphQLNonNull(GraphQLInt) },
+        companyId: { type: GraphQLString },
+      },
+      resolve(parentValue, { firstName, age }) {
+        return axios
+          .post("http://localhost:3000/users", { firstName, age })
+          .then((res) => res.data);
+      },
+    },
+    //User mutation to delete a existing user
+    deleteUser: {
+      type: UserType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      resolve(parentValue, { id }) {
+        return axios
+          .delete(`http://localhost:3000/users/${id}`)
+          .then((res) => res.data);
+      },
+    },
+  },
+});
+
 module.exports = new GraphQLSchema({
   query: RootQuery,
+  mutation,
 });
