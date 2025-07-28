@@ -73,7 +73,55 @@ const resolveFunctions = {
 
 Starter project from a GraphQL course on Udemy.com
 
-### Setup
+### App Setup
 
 - Run `npm install --legacy-peer-deps` in the root of the project to install dependencies
+- Create a .env file based on the template.
+- Run `npm run dev`to start the application
 - Access the application at `localhost:4000` in your browser
+
+### Hints not disapearing on GraphiQL
+
+If in GraphiQL the hints aren't being removed automatically run the following code on the console
+
+```js
+setInterval(() => {
+  document
+    .querySelectorAll(".CodeMirror-hints-wrapper")
+    .forEach((el) => el.remove());
+}, 1000);
+```
+
+### GraphiQL Examples
+
+```graphql
+
+
+```
+
+## Apollo Setup
+
+Between the React App and the GraphQL Server are two very important pieces:
+
+- Apollo Store - This will communicate directly with the GraphQL Server and store data that comes from it. It's a client side repository of data that comes from GraphQL Store. This piece doesn't know nor care about the existance of the React App
+- Apollo Provider - The integration layer between the Apollo Store and the React application. The provider will collect data from the store and inject it into the application. The vast majority of configuration will be done in this layer.
+
+The client and providder draws from redux world. So if you are familiar with those this will look similar
+
+On a setup this simple. ApolloClient is our store and ApolloProver is indeed the provider which in this case it's a React component
+If you don't provide any configuration on the ApolloClient it will assume that the GraphQL Server is on the same host but at /graphql
+
+```js
+import ApolloClient from "apollo-client";
+import { ApolloProvider } from "react-apollo";
+
+const client = new ApolloClient({});
+
+const Root = () => {
+  return (
+    <ApolloProvider client={client}>
+      <div>Lyrical</div>
+    </ApolloProvider>
+  );
+};
+```
