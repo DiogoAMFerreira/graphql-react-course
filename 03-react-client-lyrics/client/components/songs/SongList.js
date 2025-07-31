@@ -3,11 +3,22 @@ import gql from 'graphql-tag' //GraphQL Tag is a helper that allows us to write 
 import { graphql } from 'react-apollo'
 
 class SongList extends Component {
+    renderLoading() {
+        return <div>Song List Loading...</div>
+    }
     render() {
         if (this.props.data.loading === true) {
-            return <div>Song List Loading...</div>
+            return this.renderLoading()
         }
-        return <div>Song List:</div>
+
+        return (
+            <div>
+                Song List:
+                {this.props.data.songs.map((song) => {
+                    return <li>{song.title}</li>
+                })}
+            </div>
+        )
     }
 }
 
@@ -15,6 +26,7 @@ class SongList extends Component {
 const query = gql`
     {
         songs {
+            id
             title
         }
     }
