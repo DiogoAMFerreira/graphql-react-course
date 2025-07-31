@@ -12,10 +12,10 @@ Use all default answers as they aren't important
 
 Then installed 4 packages:
 
-- Expresss - Responsible with handling HTTP requests and sending responses back to the user
-- Express-GraphQL - Compatibility layer for Express with GraphQL
-- GraphQL - GraphQL librabry used to crawl through the data
-- Lodash - Utility package
+-   Expresss - Responsible with handling HTTP requests and sending responses back to the user
+-   Express-GraphQL - Compatibility layer for Express with GraphQL
+-   GraphQL - GraphQL librabry used to crawl through the data
+-   Lodash - Utility package
 
 ```sh
 npm install --save express express-graphql graphql lodash
