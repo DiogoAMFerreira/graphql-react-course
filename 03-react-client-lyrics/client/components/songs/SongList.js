@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import gql from 'graphql-tag' //GraphQL Tag is a helper that allows us to write query's inside a component file
 import { graphql } from 'react-apollo'
+import { Link } from 'react-router'
 
 class SongList extends Component {
     renderLoading() {
@@ -23,6 +24,12 @@ class SongList extends Component {
                         )
                     })}
                 </ul>
+                <Link
+                    to="/songs/new"
+                    className="btn-floating btn-large red right"
+                >
+                    <i className="material-icons">add</i>
+                </Link>
             </div>
         )
     }
