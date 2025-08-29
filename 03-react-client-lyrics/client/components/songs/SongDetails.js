@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
+import { Link } from 'react-router'
 import getSong from '../../queries/getSong'
 
 class SongDetail extends Component {
@@ -21,6 +22,7 @@ class SongDetail extends Component {
 
         return (
             <div>
+                <Link to="/">Back</Link>
                 <h3>{song.title}</h3>
             </div>
         )
