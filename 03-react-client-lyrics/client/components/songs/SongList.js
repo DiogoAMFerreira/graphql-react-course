@@ -5,6 +5,18 @@ import query from '../../queries/fetchSongs' //Importing the query we created
 import deleteSongMutation from '../../mutations/deleteSong'
 
 class SongList extends Component {
+    onSongDelete(id) {
+        this.props.mutate({
+            variables: { id },
+            refetchQueries: [
+                {
+                    query, // Refetching the song list after creating a new song
+                    variables: {}, // No variables needed for this query
+                },
+            ],
+        })
+    }
+
     renderLoading() {
         return <div>Song List Loading...</div>
     }
@@ -21,6 +33,14 @@ class SongList extends Component {
                         return (
                             <li key={song.id} className="collection-item">
                                 {song.title}
+                                <i
+                                    className="material-icons"
+                                    onClick={() => {
+                                        this.onSongDelete(song.id)
+                                    }}
+                                >
+                                    delete
+                                </i>
                             </li>
                         )
                     })}
