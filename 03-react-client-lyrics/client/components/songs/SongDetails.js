@@ -4,7 +4,7 @@ class SongDetail extends Component {
     render() {
         return (
             <div>
-                <h3>Song Details:</h3>
+                <h3>Song Details</h3>
             </div>
         )
     }
