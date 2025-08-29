@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import gql from 'graphql-tag' //GraphQL Tag is a helper that allows us to write query's inside a component file
 import { graphql } from 'react-apollo'
 import { Link } from 'react-router'
+import query from '../../queries/fetchSongs' //Importing the query we created
 
 class SongList extends Component {
     renderLoading() {
@@ -34,16 +34,6 @@ class SongList extends Component {
         )
     }
 }
-
-//Query definitions:
-const query = gql`
-    query {
-        songs {
-            id
-            title
-        }
-    }
-`
 
 //Similar sintax to Redux
 export default graphql(query)(SongList)
