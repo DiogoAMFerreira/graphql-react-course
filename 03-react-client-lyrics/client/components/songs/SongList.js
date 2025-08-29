@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { Link } from 'react-router'
 import query from '../../queries/fetchSongs' //Importing the query we created
+import deleteSongMutation from '../../mutations/deleteSong'
 
 class SongList extends Component {
     renderLoading() {
@@ -36,4 +37,8 @@ class SongList extends Component {
 }
 
 //Similar sintax to Redux
-export default graphql(query)(SongList)
+export default graphql(deleteSongMutation)(graphql(query)(SongList))
+
+//We use two graphql calls because we are using two different queries/mutations
+//The inner one is the first to be called, so it will provide the data prop to the component
+//The outer one will provide the mutate prop to the component
