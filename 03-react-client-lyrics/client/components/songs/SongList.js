@@ -6,15 +6,17 @@ import deleteSongMutation from '../../mutations/deleteSong'
 
 class SongList extends Component {
     onSongDelete(id) {
-        this.props.mutate({
-            variables: { id },
-            refetchQueries: [
-                {
-                    query, // Refetching the song list after creating a new song
-                    variables: {}, // No variables needed for this query
-                },
-            ],
-        })
+        this.props
+            .mutate({
+                variables: { id },
+                // refetchQueries: [
+                //     {
+                //         query, // Refetching the song list after creating a new song
+                //         variables: {}, // No variables needed for this query
+                //     },
+                // ],
+            })
+            .then(() => this.props.data.refetch()) // This is easier cause the query is on this component
     }
 
     renderLoading() {
