@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { Link } from 'react-router'
 import getSong from '../../queries/getSong'
+import LyricCreate from '../lyrics/LyricCreate'
 
 class SongDetail extends Component {
     renderLoading() {
@@ -24,6 +25,7 @@ class SongDetail extends Component {
             <div>
                 <Link to="/">Back</Link>
                 <h3>{song.title}</h3>
+                <LyricCreate songId={song.id} />
             </div>
         )
     }
