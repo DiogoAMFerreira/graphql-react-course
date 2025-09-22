@@ -27,7 +27,7 @@ class SongDetail extends Component {
                 <Link to="/">Back</Link>
                 <h3>{song.title}</h3>
                 <LyricCreate songId={song.id} />
-                <LyricList songId={song.id} />
+                <LyricList lyrics={song.lyrics} />
             </div>
         )
     }

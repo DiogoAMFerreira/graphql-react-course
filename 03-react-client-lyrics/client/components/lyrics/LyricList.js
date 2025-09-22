@@ -6,8 +6,18 @@ class LyricList extends Component {
         this.state = {}
     }
 
+    renderLyrics() {
+        return this.props.lyrics.map(({ id, content, likes }) => {
+            return (
+                <li className="collection-item" key={id}>
+                    {content}
+                </li>
+            )
+        })
+    }
+
     render() {
-        return <ul>LyricList</ul>
+        return <ul className="collection">{this.renderLyrics()}</ul>
     }
 }
 
