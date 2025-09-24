@@ -26,8 +26,9 @@ class SongDetail extends Component {
             <div>
                 <Link to="/">Back</Link>
                 <h3>{song.title}</h3>
-                <LyricCreate songId={song.id} />
                 <LyricList lyrics={song.lyrics} />
+                {/* Better under the list so as it grows there's no need to scroll up for a new line */}
+                <LyricCreate songId={song.id} />
             </div>
         )
     }

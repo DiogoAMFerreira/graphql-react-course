@@ -144,3 +144,14 @@ Here's an example of an object returned by the GraphQL server
 ```
 
 But it doesn't know what data it has or what attributes exist inside that data. To fix this issue there's a piece of configuration that can be made in the Apollo Client to give each record an ID. This means that if any data within that record is changed then Apollo knows it has to refetch it.
+
+For that in the Apollo Client setup the dataIdFromObject.
+A very simple setup is the following:
+
+```js
+const client = new ApolloClient({
+    dataIdFromObject: (obj) => obj.id,
+})
+```
+
+This works well if tables have an unique id field, if that changes then we need to provide a custom function for each object type. Also it requires that the id is always fetched in any query we came. If we don't fetch that id then it can't map the records in the ApolloStore
