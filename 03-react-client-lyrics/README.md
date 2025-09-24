@@ -108,7 +108,7 @@ Between the React App and the GraphQL Server are two very important pieces:
 
 The client and providder draws from redux world. So if you are familiar with those this will look similar
 
-On a setup this simple. ApolloClient is our store and ApolloProver is indeed the provider which in this case it's a React component
+On a setup this simple. ApolloClient is our store and ApolloProvider is indeed the provider which in this case it's a React component
 If you don't provide any configuration on the ApolloClient it will assume that the GraphQL Server is on the same host but at /graphql
 
 ```js
@@ -125,3 +125,22 @@ const Root = () => {
     )
 }
 ```
+
+### Apollo Store
+
+The Apollo store, or apollo client, has internal buckets of data. It knows how to fetch data from the GraphQL server and store it inside this buckets (cache) The Apollo knows exactly in which bucket to store the information because in each response from the GraphQL Server there's a \_\_typename field indicating the type of data it's fetching.
+
+Here's an example of an object returned by the GraphQL server
+
+```json
+{
+	{
+		"id": "6887a75e5a8cba1b62e098bd",
+		"content": "Peaches",
+		"likes": 0,
+		"__typename": "FruitType"
+	}
+}
+```
+
+But it doesn't know what data it has or what attributes exist inside that data. To fix this issue there's a piece of configuration that can be made in the Apollo Client to give each record an ID. This means that if any data within that record is changed then Apollo knows it has to refetch it.

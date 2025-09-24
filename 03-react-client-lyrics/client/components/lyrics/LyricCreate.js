@@ -15,6 +15,9 @@ class LyricCreate extends Component {
                 songId: this.props.songId,
                 content: this.state.content,
             },
+            // It's important to refetch the song query to update the list of lyrics
+            // after adding a new lyric. We can do this by specifying the name of the query or
+            // by using a piece of configuration to tell Apollo Store the identity of the objects and refetch a specific object with its id
             // refetchQueries: [{
         })
         // Clear the input
