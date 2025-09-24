@@ -155,3 +155,7 @@ const client = new ApolloClient({
 ```
 
 This works well if tables have an unique id field, if that changes then we need to provide a custom function for each object type. Also it requires that the id is always fetched in any query we came. If we don't fetch that id then it can't map the records in the ApolloStore
+
+More information can be found here: https://www.apollographql.com/docs/react/caching/cache-configuration
+
+Also there's other ways to achieve the same goal
