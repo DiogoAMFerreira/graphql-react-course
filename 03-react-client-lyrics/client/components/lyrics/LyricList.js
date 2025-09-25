@@ -6,6 +6,17 @@ class LyricList extends Component {
     onLike(id) {
         this.props.mutate({
             variables: { id },
+            // Optimistic UI update
+            optimisticResponse: {
+                __typename: 'Mutation',
+                likeLyric: {
+                    id: id,
+                    __typename: 'LyricType',
+                    likes:
+                        this.props.lyrics.find((lyric) => lyric.id === id)
+                            .likes + 1,
+                },
+            },
         })
     }
 

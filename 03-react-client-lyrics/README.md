@@ -159,3 +159,28 @@ This works well if tables have an unique id field, if that changes then we need 
 More information can be found here: https://www.apollographql.com/docs/react/caching/cache-configuration
 
 Also there's other ways to achieve the same goal
+
+#### Optimistic UI Updates
+
+When calling a mutation we can setup an "optimistic ui update" that is like telling the Apollo that we think that the response will be changed to that, instantly updating our React Application. This can be great to update the UI before a response is given by the server improving the UI experience for the user.
+
+Apollo will use this guess that we give them to update temporarily it's Store while waiting for the real response from the server.
+
+```js
+onLike(id) {
+	this.props.mutate({
+		variables: { id },
+		// Optimistic UI update
+		optimisticResponse: {
+			__typename: 'Mutation',
+			likeLyric: {
+				id: id,
+				__typename: 'LyricType',
+				likes:
+					this.props.lyrics.find((lyric) => lyric.id === id)
+						.likes + 1,
+			},
+		},
+	})
+}
+```
