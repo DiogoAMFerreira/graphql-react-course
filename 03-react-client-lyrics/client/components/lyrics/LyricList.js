@@ -14,7 +14,7 @@ class LyricList extends Component {
             return (
                 <li className="collection-item" key={id}>
                     {content}
-                    <div>
+                    <div className="vote-box">
                         {likes}
                         <i
                             onClick={() => this.onLike(id)}
