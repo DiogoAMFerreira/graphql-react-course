@@ -160,6 +160,8 @@ More information can be found here: https://www.apollographql.com/docs/react/cac
 
 Also there's other ways to achieve the same goal
 
+Make sure that if you are adding new lines then we need to make sure that we grab the same properties on the return that we grabbed on the loading of that resource.
+
 #### Optimistic UI Updates
 
 When calling a mutation we can setup an "optimistic ui update" that is like telling the Apollo that we think that the response will be changed to that, instantly updating our React Application. This can be great to update the UI before a response is given by the server improving the UI experience for the user.
