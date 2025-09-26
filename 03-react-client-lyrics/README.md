@@ -1,3 +1,5 @@
+Startup project came from: https://github.com/StephenGrider/Lyrical-GraphQL
+
 # Main GRAPHQL Javascript/Typescript clients for React
 
 This list is ordered in complexity:
