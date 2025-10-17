@@ -97,4 +97,15 @@ function login({ email, password, req }) {
     })
 }
 
-module.exports = { signup, login }
+// Logs out a user.  We simply invoke 'req.logout', a function added to the request
+// object by Passport JS
+function logout({ req }) {
+    //Save a reference to the user before logging out
+    //because req.logout() will remove the user from the request
+    const { user } = req
+    req.logout()
+
+    return user
+}
+
+module.exports = { signup, login, logout }

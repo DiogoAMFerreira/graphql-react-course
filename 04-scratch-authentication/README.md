@@ -50,6 +50,20 @@ Cons:
 
 For this course the Coupled Approach was the choice since the startup project already did all the work on integrating Passport with GraphQL
 
+### Logout with PassportJS
+
+To log out using PassportJS there's an exposed method called `logout()` on `req` (It can also be `logOut()`) that can be called from any route handler which needs to terminate a login session. When it's invoked it removes the property `req.user` and clear the login session.
+
+```js
+app.get('/logout', function (req, res)) {
+	req.logOut();
+	res.redirect('/');
+}
+
+```
+
+More documentation can be found in https://passportjs.org/docs
+
 # Setup
 
 -   Run `npm install --legacy-peer-deps` in the root of the project to install dependencies
