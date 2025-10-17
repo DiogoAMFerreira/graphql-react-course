@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import CurrentUser from '../queries/CurrentUser'
+import Logout from '../mutations/Logout'
 import { Link } from 'react-router'
 
 /**
@@ -9,6 +10,9 @@ import { Link } from 'react-router'
  * Class based component since we will add state and lifecycle methods later
  */
 class Header extends Component {
+    onLogout() {
+        this.props.Logout({})
+    }
     renderButtons() {
         const { loading, currentUser } = this.props.data
 
@@ -17,7 +21,11 @@ class Header extends Component {
         }
 
         if (currentUser) {
-            return <div>Logout</div>
+            return (
+                <li>
+                    <a onClick={this.onLogout.bind(this)}>Logout</a>
+                </li>
+            )
         }
         return (
             <div>
@@ -45,4 +53,4 @@ class Header extends Component {
     }
 }
 
-export default graphql(CurrentUser)(Header)
+export default graphql(Logout)(graphql(CurrentUser)(Header))
