@@ -8,13 +8,30 @@ import CurrentUser from '../queries/CurrentUser'
  * Class based component since we will add state and lifecycle methods later
  */
 class Header extends Component {
-    render() {
-        if (this.props.data.loading) {
-            return <div>Loading...</div>
+    renderButtons() {
+        const { loading, currentUser } = this.props.data
+
+        if (loading) {
+            return <div />
         }
 
-        console.log(this.props.data)
-        return <div>Header</div>
+        if (currentUser) {
+            return <div>Logout</div>
+        }
+        return (
+            <ul>
+                <li>Signup</li>
+                <li>Login</li>
+            </ul>
+        )
+    }
+
+    render() {
+        return (
+            <nav>
+                <div className="nav-wrapper">{this.renderButtons()}</div>
+            </nav>
+        )
     }
 }
 
