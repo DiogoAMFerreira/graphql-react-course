@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { graphql } from 'react-apollo'
+import CurrentUser from '../queries/CurrentUser'
 
 /**
  * Header component
@@ -7,8 +9,13 @@ import React, { Component } from 'react'
  */
 class Header extends Component {
     render() {
+        if (this.props.data.loading) {
+            return <></>
+        }
+
+        console.log(this.props.data)
         return <div>Header</div>
     }
 }
 
-export default Header
+export default graphql(CurrentUser)(Header)
