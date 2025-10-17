@@ -10,7 +10,7 @@ import CurrentUser from '../queries/CurrentUser'
 class Header extends Component {
     render() {
         if (this.props.data.loading) {
-            return <></>
+            return <div>Loading...</div>
         }
 
         console.log(this.props.data)

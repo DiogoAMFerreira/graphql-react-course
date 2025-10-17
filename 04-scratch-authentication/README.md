@@ -64,6 +64,33 @@ app.get('/logout', function (req, res)) {
 
 More documentation can be found in https://passportjs.org/docs
 
+### Cookies
+
+Make sure you include cookies on your requests when using GraphQL because Passport will need them to know if the user is authenticated.
+
+This is a small configuration on the ApolloClient called networkInterface. You need to create your custom network interface. It can be something like this:
+
+```
+import ApolloClient, { createNetworkInterface } from 'apollo-client'
+
+//...
+
+const networkInterface = createNetworkInterface({
+    uri: '/graphql',
+    opts: {
+        credentials: 'same-origin',
+    },
+})
+
+const client = new ApolloClient({
+	networkInterface,
+    dataIdFromObject: (o) => o.id,
+})
+
+```
+
+This networkInterface configuration can also be used to define a different URI for GraphQL. Defining this also means that Apollo stops using it's default values so it's important to define the URI even if it's the default one
+
 # Setup
 
 -   Run `npm install --legacy-peer-deps` in the root of the project to install dependencies
