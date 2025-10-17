@@ -11,7 +11,9 @@ import { Link } from 'react-router'
  */
 class Header extends Component {
     onLogout() {
-        this.props.Logout({})
+        this.props.mutate({
+            refetchQueries: [{ query: CurrentUser }],
+        })
     }
     renderButtons() {
         const { loading, currentUser } = this.props.data
