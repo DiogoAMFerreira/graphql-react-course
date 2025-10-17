@@ -188,3 +188,69 @@ onLike(id) {
 	})
 }
 ```
+
+# Final GraphQL Tests
+
+```ql
+#mutation {
+#	addSong(title: "Goddang") {
+#		id
+#	}
+#}
+
+#mutation {
+#	addLyricToSong(
+#    songId: "6887a4b65a8cba1b62e098ba",
+#    content: "Goddang Goddang")
+#  {
+#    id
+#  }
+#}
+
+#query {
+#	songs{
+#    id
+#    title
+#  }
+#}
+
+#mutation AddSong($title: String) {
+#  addSong(title: $title) {
+#    id
+#    title
+#  }
+#}
+
+#mutation DeleteSong($id: ID) {
+#  deleteSong(id: $id) {id}
+#}
+
+
+#query getSong($id: ID!) {
+#  song(id:$id) {
+#    id
+#    title
+#    lyrics {
+#      id
+#    }
+#  }
+#}
+
+#mutation AddLyricToSong($content:String, $songId: ID) {
+#  	addLyricToSong(songId: $songId, content:$content) {
+#    	id
+#      lyrics {
+#        content
+#      }
+#  }
+#}
+
+
+
+mutation likeLyric($id: ID) {
+  likeLyric(id: $id) {
+  	id
+	}
+}
+
+```

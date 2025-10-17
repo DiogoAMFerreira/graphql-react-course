@@ -54,3 +54,15 @@ For this course the Coupled Approach was the choice since the startup project al
 
 -   Run `npm install --legacy-peer-deps` in the root of the project to install dependencies
 -   Access the application at `localhost:4000` in your browser
+
+### Hints not disapearing on GraphiQL
+
+If in GraphiQL the hints aren't being removed automatically run the following code on the console
+
+```js
+setInterval(() => {
+    document
+        .querySelectorAll('.CodeMirror-hints-wrapper')
+        .forEach((el) => el.remove())
+}, 1000)
+```

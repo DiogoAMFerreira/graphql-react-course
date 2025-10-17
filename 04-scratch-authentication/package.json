@@ -8,7 +8,7 @@
     },
     "main": "index.js",
     "scripts": {
-        "dev": "nodemon index.js --ignore client"
+        "dev": "nodemon --env-file=.env index.js --ignore client"
     },
     "author": "",
     "license": "ISC",
@@ -26,7 +26,7 @@
         "express": "^4.14.0",
         "express-graphql": "^0.6.1",
         "express-session": "^1.15.0",
-        "graphql": "^0.8.2",
+        "graphql": "^0.13.2",
         "graphql-tag": "^1.2.4",
         "html-webpack-plugin": "^2.26.0",
         "lodash": "^4.17.4",
