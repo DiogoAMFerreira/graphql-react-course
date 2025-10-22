@@ -20,11 +20,9 @@ class LoginForm extends Component {
                 refetchQueries: [{ query: CurrentUserQuery }],
             })
             .catch((err) => {
-                const errorMessages = err.graphQLErrors.map(
-                    ({ message }) => message
-                )
+                const errors = err.graphQLErrors.map(({ message }) => message)
 
-                this.setState({ errors: errorMessages })
+                this.setState({ errors })
             })
     }
 
@@ -32,7 +30,10 @@ class LoginForm extends Component {
         return (
             <div>
                 <h3>Login</h3>
-                <AuthForm onSubmit={this.onSubmit.bind(this)} />
+                <AuthForm
+                    onSubmit={this.onSubmit.bind(this)}
+                    errors={this.state.errors}
+                />
             </div>
         )
     }
