@@ -98,6 +98,22 @@ When you have both a `refetchQueries` setup and a `.then` in the mutation call b
 
 In situations like this you need to handle it in a different way. One way is to associate the element with the query. When a query it's refetched the component will automatically rerender and we can use this to trigger changes in the component
 
+## Higher Order Components
+
+A Higher Order Component (HOC) is an advanced technique in React for reusing component logic. An HOC is a function that takes a component as an argument and returns a new component with enhanced or additional functionality
+
+For example, you might use an HOC to inject user authentication status into a component, or to wrap a component with error handling logic. HOCs do not modify the original component—they create a wrapper component that adds the desired behavior.
+
+```js
+function withExtraProps(WrappedComponent) {
+    return function EnhancedComponent(props) {
+        return <WrappedComponent {...props} extraProp="value" />
+    }
+}
+```
+
+In this project specifically it's used to control the authentication status. The one created is called requireAuth.
+
 # Setup
 
 -   Run `npm install --legacy-peer-deps` in the root of the project to install dependencies
