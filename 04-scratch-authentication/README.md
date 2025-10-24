@@ -91,6 +91,13 @@ const client = new ApolloClient({
 
 This networkInterface configuration can also be used to define a different URI for GraphQL. Defining this also means that Apollo stops using it's default values so it's important to define the URI even if it's the default one
 
+### Race conditions
+
+Be careful with `refetchQueries` and `.then` on the mutation process.
+When you have both a `refetchQueries` setup and a `.then` in the mutation call both will be called at the same time. This can problematic for most situations. Imagine a login mutation where you call the query to load the user after a sucessful login and also have a redirect to the "Home" page. Since the navigation to the other page will probably be faster than the refetch then the page would try to load the Home page, see you aren't authenticated and send you back to the Login page.
+
+In situations like this you need to handle it in a different way. One way is to associate the element with the query. When a query it's refetched the component will automatically rerender and we can use this to trigger changes in the component
+
 # Setup
 
 -   Run `npm install --legacy-peer-deps` in the root of the project to install dependencies

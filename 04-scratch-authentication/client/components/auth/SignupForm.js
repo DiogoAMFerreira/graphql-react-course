@@ -3,6 +3,7 @@ import AuthForm from './AuthForm'
 import { graphql } from 'react-apollo'
 import SignupMutation from '../../mutations/Signup'
 import CurrentUserQuery from '../../queries/CurrentUser'
+import { hashHistory } from 'react-router'
 
 class SignupForm extends Component {
     constructor(props) {
@@ -10,6 +11,22 @@ class SignupForm extends Component {
 
         this.state = {
             errors: [],
+        }
+    }
+
+    // // Replacement in newer React versions (17+)
+    // getSnapshotBeforeUpdate(prevProps) {
+    //     prevProps //the old, current set of props
+    //     this.props //the new set of props that will be in place when component rerenders
+    // }
+
+    componentWillUpdate(nextProps) {
+        //this.props; //the old, current set of props
+        //nextProps; //the new set of props that will be in place when component rerenders
+        if (!this.props.data.currentUser && nextProps.data.currentUser) {
+            console.log('Login successful!')
+            // Redirect to dashboard after login
+            hashHistory.push('/dashboard')
         }
     }
 
@@ -39,4 +56,4 @@ class SignupForm extends Component {
     }
 }
 
-export default graphql(SignupMutation)(SignupForm)
+export default graphql(CurrentUserQuery)(graphql(SignupMutation)(SignupForm))
