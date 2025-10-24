@@ -4,8 +4,8 @@ import CurrentUserQuery from '../../queries/CurrentUser'
 
 export default (WrappedComponent) => {
     class RequireAuth extends Component {
-        componentWillUpdate() {
-            if (!this.props.data.loading && !this.props.data.currentUser) {
+        componentWillUpdate(nextProps) {
+            if (!nextProps.data.loading && !nextProps.data.currentUser) {
                 // Redirect to login if not authenticated
                 this.props.router.push('/login')
             }
